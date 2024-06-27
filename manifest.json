@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "CS Float",
+  "version": "1.0",
+  "permissions": ["storage", "alarms", "webNavigation", "tabs", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "icons": {
+    "16": "images/16.png",
+    "128": "images/128.png"
+  },
+  "web_accessible_resources": [{
+    "resources": ["user_item.txt"],
+    "matches": ["<all_urls>"]
+  }],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/16.png",
+      "128": "images/128.png"
+    },
+    "default_title": "Click to open CSFloat parser"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://csfloat.com/*"], 
+      "js": ["contentCsfloat.js"]
+    },
+    {
+      "matches": ["https://csfloatparser.com/*", "*://localhost/*", "https://float.csfloatparser.com/*"],
+      "js": ["contentParser.js"]
+    }
+  ]
+}
