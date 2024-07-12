@@ -1,7 +1,7 @@
 chrome.action.onClicked.addListener(() => {
-  chrome.tabs.query({ url: 'https://csfloatparser.com/*' }, (tabs) => {
+  chrome.tabs.query({ url: 'https://sticker.csfloatparser.com/*' }, (tabs) => {
     if (!tabs.length) {
-      chrome.tabs.create({ url: 'https://csfloatparser.com/', active: true });
+      chrome.tabs.create({ url: 'https://sticker.csfloatparser.com/', active: true });
 
     } else {
       chrome.tabs.update(tabs[0].id, { active: true });
@@ -27,7 +27,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 
 
 chrome.runtime.onMessage.addListener((message) => {
-	if (message.parse || message.parseFloat) {
+	if (message.parse || message.parseFloat || message.parseSticker) {
 		chrome.tabs.query({ url: 'https://csfloat.com/*' }, async (tabs) => {
 			let tabId;
 			if (!tabs.length) {
@@ -47,6 +47,11 @@ chrome.runtime.onMessage.addListener((message) => {
 	}
 	if (message.parsedSkinsFloat) {
 		chrome.tabs.query({ url: ["*://localhost/*", "https://float.csfloatparser.com/*"] }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, message);
+    });
+	}
+	if (message.parsedSkinsSticker) {
+		chrome.tabs.query({ url: ["*://localhost/*", "https://sticker.csfloatparser.com/*"] }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, message);
     });
 	}

@@ -8,10 +8,6 @@
     "16": "images/16.png",
     "128": "images/128.png"
   },
-  "web_accessible_resources": [{
-    "resources": ["user_item.txt"],
-    "matches": ["<all_urls>"]
-  }],
   "background": {
     "service_worker": "background.js",
     "type": "module"
@@ -29,7 +25,7 @@
       "js": ["contentCsfloat.js"]
     },
     {
-      "matches": ["https://csfloatparser.com/*", "*://localhost/*", "https://float.csfloatparser.com/*"],
+      "matches": ["https://csfloatparser.com/*", "*://localhost/*", "https://float.csfloatparser.com/*", "https://sticker.csfloatparser.com/*"],
       "js": ["contentParser.js"]
     }
   ]

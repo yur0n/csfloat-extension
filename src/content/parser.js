@@ -24,13 +24,13 @@
 
 
 window.addEventListener("message", async (e) => {
-	if (e.data.parse === true || e.data.parseFloat === true) {
+	if (e.data.parse === true || e.data.parseFloat === true || e.data.parseSticker === true) {
 		chrome.runtime.sendMessage(e.data);
 	}
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-	if (message.parsedSkins || message.parsedSkinsFloat) {
+	if (message.parsedSkins || message.parsedSkinsFloat || message.parsedSkinsSticker) {
 		window.postMessage(message, "*");
 	}
 });
