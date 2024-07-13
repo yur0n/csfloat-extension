@@ -161,10 +161,10 @@ async function getSkinsSticker(overpay) {
 					const stickers = [];
 					let totalStickersPrice = 0;
 					let totalStickersOverpayPrice = 0;
-					if (!item.stickers) return;
+					if (!item.item.stickers) return;
 					item.item.stickers.forEach(sticker => {
-						if (sticker === null) return;
-						const price = (Math.round(sticker.reference.price * 100) / 100 ) / 100 // scratched = 0
+						if (!sticker) return;
+						const price = (Math.round(sticker.wear ? 0 : sticker.reference.price * 100) / 100 ) / 100 // scratched = 0
 						totalStickersPrice += price;
 						let overpayPrice;
 						for (const stickerName of Object.keys(overpay)) {
@@ -179,6 +179,7 @@ async function getSkinsSticker(overpay) {
 						
 						stickers.push({
 							name: sticker.name,
+							wear: sticker.wear,
 							price,
 							overpayPrice
 						})
