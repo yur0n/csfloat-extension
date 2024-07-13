@@ -157,7 +157,7 @@ async function getSkinsSticker(overpay) {
 		const response = await fetch(url);
 		if (response.ok) {
 				const data = await response.json()
-				data.items.forEach(item => {
+				data.forEach(item => {
 					const stickers = [];
 					let totalStickersPrice = 0;
 					let totalStickersOverpayPrice = 0;
