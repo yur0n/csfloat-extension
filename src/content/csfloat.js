@@ -164,7 +164,8 @@ async function getSkinsSticker(overpay) {
 					if (!item.item.stickers) return;
 					item.item.stickers.forEach(sticker => {
 						if (!sticker) return;
-						const price = (Math.round(sticker.wear ? 0 : sticker.reference.price * 100) / 100 ) / 100 // scratched = 0
+						const prePrice = sticker.wear ? 0 ? sticker.reference?.price : sticker.reference?.price : 0;
+						const price = (Math.round(prePrice * 100) / 100 ) / 100 // scratched = 0
 						totalStickersPrice += price;
 						let overpayPrice;
 						for (const stickerName of Object.keys(overpay)) {
