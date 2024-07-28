@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "CS Float",
   "version": "1.0",
-  "permissions": ["storage", "alarms", "webNavigation", "tabs", "storage"],
+  "permissions": ["storage", "alarms", "tabs"],
   "host_permissions": ["<all_urls>"],
   "icons": {
     "16": "images/16.png",
